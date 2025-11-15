@@ -5,7 +5,6 @@ Direct Gemini API test
 
 import os
 import subprocess
-import sys
 
 def test_gemini_api():
     """Test Gemini API directly"""
@@ -16,6 +15,7 @@ def test_gemini_api():
         # Test with subprocess to bypass import issues
         test_code = '''
 import os
+import sys
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -36,7 +36,7 @@ else:
     sys.exit(1)
 '''
 
-        result = subprocess.run([sys.executable, '-c', test_code],
+        result = subprocess.run(['python3', '-c', test_code],
                           capture_output=True, text=True, cwd='.')
 
         if result.returncode == 0:
